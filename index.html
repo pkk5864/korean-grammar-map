@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>국어문법론 학습 노선도</title>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="page">
+      <section class="board">
+        <p class="eyebrow">SUBWAY STYLE STUDY TRACKER</p>
+        <h1>
+          국어문법론 학습 노선도
+          <span class="title-subtitle">SUBWAY STYLE STUDY TRACKER</span>
+        </h1>
+
+        <section class="status-panel" aria-label="현재 학습 상태">
+          <div>
+            <p class="status-label">현재 학습 위치 <span class="label-subtitle">(Current Position)</span></p>
+            <strong id="current-topic">불러오는 중...</strong>
+          </div>
+          <div>
+            <p class="status-label">정차역 <span class="label-subtitle">(Station)</span></p>
+            <strong id="current-state">-</strong>
+          </div>
+        </section>
+
+        <section class="controls" aria-label="진도 이동 버튼">
+          <button id="prev-button" type="button">이전</button>
+          <button id="next-button" type="button">다음</button>
+        </section>
+
+        <section class="legend" aria-label="상태 안내">
+          <span><i class="legend-light done"></i> 완료</span>
+          <span><i class="legend-light current"></i> 진행 중</span>
+          <span><i class="legend-light todo"></i> 미진행</span>
+        </section>
+
+        <section class="line-wrap" aria-label="국어문법론 학습 노선도">
+          <div id="study-line" class="study-line"></div>
+        </section>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
