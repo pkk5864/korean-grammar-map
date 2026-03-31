@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>디지털 광주 문화대전 | 연구팀 온보딩 브리핑</title>
+  <style>
+    :root{
+      --bg:#f5f7fb;
+      --panel:#ffffff;
+      --panel-2:#eef4ff;
+      --text:#1e2a3a;
+      --muted:#5f6f86;
+      --accent:#4a7de8;
+      --accent-2:#63cfa2;
+      --line:rgba(40,70,120,.14);
+      --shadow:0 16px 40px rgba(28,45,80,.10);
+      --radius:22px;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:linear-gradient(180deg,#f9fbff 0%, #eef4fb 100%);color:var(--text);font-family:"Pretendard","Noto Sans KR","Apple SD Gothic Neo",sans-serif}
+    body{padding:28px}
+    .shell{max-width:1280px;margin:0 auto}
+    .hero{display:grid;grid-template-columns:1.4fr .9fr;gap:20px;align-items:stretch;margin-bottom:20px}
+    .card{background:rgba(255,255,255,.92);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);backdrop-filter:blur(8px)}
+    .hero-main{padding:34px 34px 28px}
+    .eyebrow{display:inline-flex;align-items:center;gap:8px;padding:7px 12px;border-radius:999px;background:#eaf1ff;border:1px solid rgba(74,125,232,.18);font-size:13px;font-weight:700;color:#3b66c6;letter-spacing:.02em}
+    h1{margin:16px 0 14px;font-size:38px;line-height:1.18;letter-spacing:-.03em}
+    .lead{margin:0;color:var(--muted);font-size:17px;line-height:1.72}
+    .hero-side{padding:26px;display:flex;flex-direction:column;justify-content:space-between;background:linear-gradient(180deg,#f7faff 0%, #edf4ff 100%)}
+    .mini-label{font-size:12px;font-weight:800;color:#5273bf;letter-spacing:.08em;text-transform:uppercase}
+    .mini-title{margin:10px 0 6px;font-size:24px;line-height:1.35}
+    .mini-copy{margin:0;color:var(--muted);line-height:1.65;font-size:15px}
+    .status-wrap{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:20px}
+    .status{padding:16px;border-radius:18px;background:#ffffff;border:1px solid rgba(74,125,232,.12)}
+    .status .k{font-size:12px;color:#6b7d97;font-weight:700;margin-bottom:8px}
+    .status .v{font-size:19px;font-weight:800;line-height:1.45;white-space:pre-line}
+    .tabs{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0 18px}
+    .tab-btn{border:1px solid rgba(74,125,232,.18);background:#f8fbff;color:#4468b8;padding:12px 18px;border-radius:999px;font-size:14px;font-weight:700;cursor:pointer;transition:.2s ease}
+    .tab-btn:hover{transform:translateY(-1px);background:#eef4ff}
+    .tab-btn.active{background:linear-gradient(135deg,#4a7de8,#5f8df1);color:#fff;border-color:transparent;box-shadow:0 10px 24px rgba(74,125,232,.22)}
+    .panel{display:none;padding:28px 28px 26px}
+    .panel.active{display:block}
+    .panel-title{margin:0 0 8px;font-size:28px;letter-spacing:-.02em}
+    .panel-desc{margin:0 0 24px;color:var(--muted);line-height:1.74;font-size:15px}
+    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    .info-box{padding:20px;border-radius:20px;background:linear-gradient(180deg,#ffffff 0%, #f7faff 100%);border:1px solid var(--line)}
+    .info-box h3{margin:0 0 10px;font-size:18px}
+    .info-box p,.info-box li{color:#526176;line-height:1.72;font-size:15px}
+    .info-box ul{margin:0;padding-left:18px}
+    .flow{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+    .flow-step{position:relative;padding:18px 18px 18px 18px;border-radius:20px;background:#fff;border:1px solid var(--line);min-height:170px}
+    .flow-step:after{content:"→";position:absolute;right:-12px;top:50%;transform:translateY(-50%);font-size:22px;color:#97addd;font-weight:900}
+    .flow-step:last-child:after{display:none}
+    .step-no{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:999px;background:#edf4ff;color:#4069c5;font-weight:800;margin-bottom:14px}
+    .flow-step h4{margin:0 0 10px;font-size:17px}
+    .flow-step p{margin:0;color:var(--muted);font-size:14px;line-height:1.65}
+    .role-list{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .role-card{padding:20px;border-radius:20px;background:linear-gradient(180deg,#ffffff 0%, #f6faff 100%);border:1px solid var(--line)}
+    .role-card h4{margin:0 0 12px;font-size:17px}
+    .role-card ul{margin:0;padding-left:18px}
+    .role-card li{font-size:14px;line-height:1.7;color:#526176}
+    .checkpoint{margin-top:18px;padding:22px;border-radius:20px;background:linear-gradient(135deg,#edf4ff,#f7fbff);border:1px solid rgba(74,125,232,.16)}
+    .checkpoint h3{margin:0 0 12px;font-size:18px}
+    .checkpoint ul{margin:0;padding-left:18px}
+    .checkpoint li{line-height:1.8;color:#4c5d75;font-size:15px}
+    .timeline{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+    .time-card{padding:18px;border-radius:20px;background:#fff;border:1px solid var(--line)}
+    .time-badge{display:inline-block;padding:6px 10px;border-radius:999px;background:#eef5ff;color:#4569bc;font-size:12px;font-weight:800;margin-bottom:12px}
+    .time-card h4{margin:0 0 10px;font-size:16px}
+    .time-card p{margin:0;color:var(--muted);font-size:14px;line-height:1.68}
+    .note{margin-top:18px;padding:18px 20px;border-radius:18px;background:#fff8ec;border:1px solid rgba(226,170,56,.22);color:#7c6428;font-size:14px;line-height:1.75}
+    .ref-list{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    .ref-card{padding:22px;border-radius:20px;background:linear-gradient(180deg,#ffffff 0%, #f7faff 100%);border:1px solid var(--line)}
+    .ref-card h4{margin:0 0 10px;font-size:18px}
+    .ref-card p{margin:0;color:var(--muted);font-size:15px;line-height:1.72}
+    .ref-link{display:inline-block;margin-top:14px;padding:10px 14px;border-radius:12px;background:#eef4ff;color:#315bb8;text-decoration:none;font-weight:700;border:1px solid rgba(74,125,232,.15)}
+    .ref-link:hover{background:#e5efff}
+    .single-ref{margin-top:16px;padding:22px;border-radius:20px;background:linear-gradient(135deg,#eef4ff,#f8fbff);border:1px solid rgba(74,125,232,.16)}
+    .single-ref p{margin:0;color:#4e6078;line-height:1.8;font-size:15px}
+    @media (max-width:1080px){
+      .hero{grid-template-columns:1fr}
+      .grid-2,.role-list,.timeline,.flow,.ref-list{grid-template-columns:1fr 1fr}
+    }
+    @media (max-width:760px){
+      body{padding:16px}
+      h1{font-size:30px}
+      .hero-main,.hero-side,.panel{padding:22px}
+      .grid-2,.role-list,.timeline,.flow,.ref-list,.status-wrap{grid-template-columns:1fr}
+      .flow-step:after{display:none}
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <section class="hero">
+      <div class="card hero-main">
+        <div class="eyebrow">연구팀 내부 공유용 브리핑</div>
+        <h1>디지털 광주 문화대전 사업을<br>빠르게 이해하기 위한 온보딩 자료</h1>
+        <p class="lead">
+          이 자료는 ‘디지털 광주 문화대전’ 사업에 처음 참여하는 연구팀 구성원이, 사업의 성격과 목적, 실제 수행 구조, 역할 분담의 방향을 한 번에 파악할 수 있도록 구성한 안내 자료이다. 사업의 세부 실무에 들어가기 전에, 먼저 이 사업이 무엇을 하는 일이며 어떤 흐름으로 진행되는지를 이해하는 데 목적이 있다.
+        </p>
+      </div>
+      <div class="card hero-side">
+        <div>
+          <div class="mini-label">사업 핵심 요약</div>
+          <div class="mini-title">‘광주’ 지역의 향토 지식 자원을 체계화하여 디지털 콘텐츠로 정리하는 사업이다.</div>
+          <p class="mini-copy">
+            단순한 자료 수집이 아니라, 지역의 역사·문화·인물·생활·유산 정보를 조사하고 이를 항목화한 뒤, 디지털 향토문화대전 체계에 맞는 원고로 완성하는 과정이 핵심이다.
+          </p>
+        </div>
+        <div class="status-wrap">
+          <div class="status">
+            <div class="k">핵심 성격</div>
+            <div class="v">기초조사 연구
++ 원고 집필</div>
+          </div>
+          <div class="status">
+            <div class="k">성과 방향</div>
+            <div class="v">디지털
+향토문화대전 수록</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="overview">사업 개요</button>
+      <button class="tab-btn" data-tab="structure">사업 구조</button>
+      <button class="tab-btn" data-tab="workflow">업무 흐름</button>
+      <button class="tab-btn" data-tab="roles">역할과 체크포인트</button>
+      <button class="tab-btn" data-tab="references">참고 자료</button>
+      <button class="tab-btn" data-tab="schedule">이해를 위한 일정 감각</button>
+    </div>
+
+    <section class="card panel active" id="overview">
+      <h2 class="panel-title">사업 개요</h2>
+      <p class="panel-desc">
+        이 사업은 경기도 광주시의 지역 자료를 조사·정리하여 디지털 향토문화대전 체계에 맞는 지식 항목과 원고를 구축하는 데 목적이 있다. 따라서 연구팀은 지역을 조사하는 연구자이면서 동시에, 조사 결과를 표준화된 항목 체계와 서술 형식 안에서 콘텐츠로 완성하는 집필자 역할도 함께 수행한다.
+      </p>
+      <div class="grid-2">
+        <div class="info-box">
+          <h3>무엇을 하는 사업인가</h3>
+          <ul>
+            <li>광주시의 역사·문화·생활·인물·지명·유산 관련 자료를 폭넓게 조사한다.</li>
+            <li>조사 결과를 디지털 향토문화대전의 항목 체계에 맞춰 분류·정리한다.</li>
+            <li>최종적으로는 독자가 검색·열람할 수 있는 디지털 원고 형태로 작성한다.</li>
+          </ul>
+        </div>
+        <div class="info-box">
+          <h3>왜 중요한가</h3>
+          <ul>
+            <li>지역의 지식 자산을 디지털 기반으로 축적하고 체계화할 수 있다.</li>
+            <li>산발적인 지역 정보를 공공적·학술적 기준으로 정리할 수 있다.</li>
+            <li>향후 지역 연구, 교육, 문화 콘텐츠 활용의 기초 자료가 된다.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="card panel" id="structure">
+      <h2 class="panel-title">사업 구조</h2>
+      <p class="panel-desc">
+        처음 참여하는 구성원이 가장 헷갈리기 쉬운 지점은, 이 사업이 단순 집필 사업도 아니고 단순 조사 사업도 아니라는 점이다. 실제로는 ‘조사 → 항목 설계 → 원고 작성’이 결합된 구조이므로, 조사 단계부터 최종 원고의 형태를 염두에 두고 움직여야 한다.
+      </p>
+      <div class="grid-2">
+        <div class="info-box">
+          <h3>기초조사 연구</h3>
+          <p>지역의 역사, 인물, 생활문화, 제도, 장소, 사건, 유산 등을 조사하여 향후 항목화 가능한 정보를 발굴하는 단계이다. 이 단계에서는 자료의 신뢰성, 범위, 지역성과 대표성이 중요하다.</p>
+        </div>
+        <div class="info-box">
+          <h3>원고 집필</h3>
+          <p>조사된 정보를 그대로 나열하는 것이 아니라, 디지털 향토문화대전의 항목 형식과 서술 원칙에 맞게 재구성하여 독자가 읽을 수 있는 원고로 완성하는 단계이다. 즉 자료를 ‘콘텐츠’로 전환하는 작업이다.</p>
+        </div>
+      </div>
+      <div class="note">
+        이 사업에서는 조사와 집필이 분리된 별개 업무가 아니라 서로 긴밀하게 연결된 하나의 연속 과정으로 이해되어야 한다. 따라서 좋은 조사는 좋은 원고를 전제로 하고, 좋은 원고는 충분한 조사 위에서만 가능하다.
+      </div>
+    </section>
+
+    <section class="card panel" id="workflow">
+      <h2 class="panel-title">업무 흐름</h2>
+      <p class="panel-desc">
+        실제 업무는 대체로 아래와 같은 흐름으로 이해할 수 있다. 각 단계는 순차적으로 이어지지만, 원고 검토나 항목 조정 과정에서 앞단계로 다시 돌아가는 경우도 많다.
+      </p>
+      <div class="flow">
+        <div class="flow-step">
+          <div class="step-no">1</div>
+          <h4>자료 조사</h4>
+          <p>문헌, 사료, 지역 자료, 기존 연구, 기관 자료 등을 검토하여 광주시 관련 지식을 폭넓게 수집한다.</p>
+        </div>
+        <div class="flow-step">
+          <div class="step-no">2</div>
+          <h4>항목 발굴·정리</h4>
+          <p>수집한 정보를 바탕으로 어떤 주제가 항목으로 성립 가능한지 검토하고, 항목 체계 안에서 위치를 정리한다.</p>
+        </div>
+        <div class="flow-step">
+          <div class="step-no">3</div>
+          <h4>원고 작성</h4>
+          <p>확정된 항목에 대해 사실 관계, 서술 구조, 분량, 용어, 형식을 고려하여 본문을 작성한다.</p>
+        </div>
+        <div class="flow-step">
+          <div class="step-no">4</div>
+          <h4>검토·보완</h4>
+          <p>원고의 정확성, 일관성, 항목 적합성을 검토하고 수정·보완하여 최종 산출물의 완성도를 높인다.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="card panel" id="roles">
+      <h2 class="panel-title">역할과 체크포인트</h2>
+      <p class="panel-desc">
+        연구팀 내부에서는 조사자, 집필자, 검토자 역할이 구분될 수 있지만, 사업 전체를 이해하기 위해서는 각 역할이 무엇을 특히 주의해야 하는지 함께 파악할 필요가 있다.
+      </p>
+      <div class="role-list">
+        <div class="role-card">
+          <h4>조사 단계에서</h4>
+          <ul>
+            <li>지역성과 대표성을 갖는 자료인지 확인한다.</li>
+            <li>자료 출처와 근거를 명확히 남긴다.</li>
+            <li>향후 항목화 가능성을 고려하며 자료를 분류한다.</li>
+          </ul>
+        </div>
+        <div class="role-card">
+          <h4>집필 단계에서</h4>
+          <ul>
+            <li>자료 요약이 아니라 항목 원고 작성이라는 점을 인식한다.</li>
+            <li>항목별 서술 구조와 형식의 일관성을 유지한다.</li>
+            <li>사실 정보, 용어 선택, 문장 흐름을 함께 점검한다.</li>
+          </ul>
+        </div>
+        <div class="role-card">
+          <h4>검토 단계에서</h4>
+          <ul>
+            <li>중복·누락·불균형이 없는지 확인한다.</li>
+            <li>광주시라는 지역적 초점이 흐려지지 않았는지 본다.</li>
+            <li>사업 전체 항목 체계 안에서의 정합성을 검토한다.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="checkpoint">
+        <h3>공통 체크포인트</h3>
+        <ul>
+          <li>이 정보가 ‘광주시’의 지역 지식으로서 충분한 가치가 있는가.</li>
+          <li>이 내용이 단순 정보 메모가 아니라 향후 원고 항목으로 발전 가능한가.</li>
+          <li>현재 작성 중인 원고가 전체 사업의 방향과 항목 체계 속에서 일관되게 놓여 있는가.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="card panel" id="references">
+      <h2 class="panel-title">참고 자료</h2>
+      <p class="panel-desc">
+        본 사업의 이해를 돕기 위해, 이미 구축된 타지역 디지털 문화대전 사례를 참고할 수 있다. 이러한 사례는 항목 구성 방식, 지역 지식의 배열 방식, 실제 서비스 화면의 느낌을 파악하는 데 유용하다.
+      </p>
+      <div class="ref-list">
+        <div class="ref-card">
+          <h4>디지털 영월 문화대전</h4>
+          <p>타지역 디지털 문화대전의 실제 구축 사례로 참고할 수 있다. 항목의 구성과 서비스 방식을 개괄적으로 파악하는 데 도움이 된다.</p>
+          <a class="ref-link" href="https://yeongwol.grandculture.net" target="_blank" rel="noopener noreferrer">사이트 바로가기</a>
+        </div>
+        <div class="ref-card">
+          <h4>디지털 동작 문화대전</h4>
+          <p>디지털 문화대전 서비스가 실제로 어떤 형식의 지역 지식 콘텐츠로 구현되는지 확인할 수 있는 사례이다.</p>
+          <a class="ref-link" href="https://dongjak.grandculture.net/dongjak" target="_blank" rel="noopener noreferrer">사이트 바로가기</a>
+        </div>
+      </div>
+      <div class="single-ref">
+        <p>본 사업은 ‘디지털 향토문화대전’의 항목을 발굴하고 원고를 집필하는 사업이다. 따라서 타지역 사례를 볼 때에도 단순히 결과 화면만 참고할 것이 아니라, 어떤 항목이 어떤 방식으로 구성되고 서술되는지를 함께 살펴보는 것이 중요하다.</p>
+      </div>
+    </section>
+
+    <section class="card panel" id="schedule">
+      <h2 class="panel-title">이해를 위한 일정 감각</h2>
+      <p class="panel-desc">
+        실제 세부 일정은 사업 운영 계획에 따라 달라질 수 있지만, 처음 참여하는 구성원은 보통 아래와 같은 단계 감각으로 이해하면 전체 진행 흐름을 파악하기 쉽다.
+      </p>
+      <div class="timeline">
+        <div class="time-card">
+          <div class="time-badge">초기</div>
+          <h4>사업 구조 이해</h4>
+          <p>전체 사업의 목적, 항목 체계, 연구팀 역할을 공유하고 기본 자료를 숙지하는 단계이다.</p>
+        </div>
+        <div class="time-card">
+          <div class="time-badge">중반 1</div>
+          <h4>조사와 항목 정리</h4>
+          <p>자료 조사와 항목 발굴이 집중적으로 이루어지며, 지역성과 대표성을 검토하는 시간이 중요하다.</p>
+        </div>
+        <div class="time-card">
+          <div class="time-badge">중반 2</div>
+          <h4>원고 집필 집중</h4>
+          <p>항목별 원고 작성이 본격화되며, 서술 형식과 내용의 균형을 맞추는 일이 핵심이 된다.</p>
+        </div>
+        <div class="time-card">
+          <div class="time-badge">후반</div>
+          <h4>검토와 정비</h4>
+          <p>중복, 누락, 표현, 형식, 사실 관계를 점검하고 최종 산출물의 완성도를 높이는 단계이다.</p>
+        </div>
+      </div>
+      <div class="note">
+        사업 참여자가 초기에 전체 구조를 잘 이해하고 있으면, 이후 개별 원고 작성 단계에서 시행착오를 크게 줄일 수 있다. 이 온보딩 자료의 목적도 바로 그 지점을 돕는 데 있다.
+      </div>
+    </section>
+  </div>
+
+  <script>
+    const buttons = document.querySelectorAll('.tab-btn');
+    const panels = document.querySelectorAll('.panel');
+
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const target = btn.dataset.tab;
+        buttons.forEach(b => b.classList.remove('active'));
+        panels.forEach(p => p.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById(target).classList.add('active');
+      });
+    });
+  </script>
+</body>
+</html>
